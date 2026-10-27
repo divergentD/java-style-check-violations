@@ -1,0 +1,168 @@
+{
+  "validation_scope": "8 个 Java 源文件，全部手写函数；仅语法解析和当前语料决策点统计。",
+  "parser": "OpenJDK javac 21.0.12 / JavacTask.parse / TreeScanner",
+  "syntax_parse_errors": 0,
+  "compilation": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "style_result": "EXPECTED_VIOLATIONS_PRESERVED",
+  "covered_rule_count": 13,
+  "minimum_expected_findings": 34,
+  "complexity": {
+    "decision_points_used": [
+      "if",
+      "&&"
+    ],
+    "function_count": 24,
+    "sum": 135,
+    "average": 5.625,
+    "maximum": 106,
+    "average_limit": 5,
+    "maximum_limit": 20,
+    "methods": [
+      {
+        "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
+        "line": 6,
+        "method": "classify",
+        "cc": 106
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
+        "line": 75,
+        "method": "adjust",
+        "cc": 6
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+        "line": 8,
+        "method": "chooseReference",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+        "line": 13,
+        "method": "summary",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+        "line": 21,
+        "method": "normalize",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+        "line": 27,
+        "method": "overWrapped",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+        "line": 17,
+        "method": "names",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+        "line": 25,
+        "method": "encode",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+        "line": 18,
+        "method": "<init>",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+        "line": 23,
+        "method": "enabled",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+        "line": 28,
+        "method": "label",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+        "line": 33,
+        "method": "completed",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+        "line": 7,
+        "method": "<init>",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+        "line": 15,
+        "method": "find",
+        "cc": 2
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+        "line": 22,
+        "method": "toString",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+        "line": 11,
+        "method": "toTarget",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+        "line": 16,
+        "method": "copy",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+        "line": 23,
+        "method": "convert",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+        "line": 29,
+        "method": "toTarget",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+        "line": 8,
+        "method": "message",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+        "line": 18,
+        "method": "amount",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+        "line": 27,
+        "method": "encode",
+        "cc": 1
+      },
+      {
+        "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+        "line": 32,
+        "method": "decode",
+        "cc": 1
+      },
+      {
+        "file": "src/test/java/com/example/fixtures/StyleViolationsTest.java",
+        "line": 9,
+        "method": "formatsMessage",
+        "cc": 1
+      }
+    ]
+  }
+}
