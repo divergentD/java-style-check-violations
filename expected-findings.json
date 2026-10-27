@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "purpose": "故意违规的静态审查语料；预期发现是最小覆盖清单，并非全部违规的穷举。",
+  "rules_baseline": {
+    "repository": "divergentD/java-style-check",
+    "commit": "989b18625732825130f7903c4e6fd247aa4d8760"
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 4,
+      "evidence": "public class JavadocViolations {",
+      "explanation": "类型只有普通行注释，没有类型 Javadoc。",
+      "intentional": true
+    },
+    {
+      "id": "F002",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 7,
+      "evidence": "public JavadocViolations(String prefix) {",
+      "explanation": "公开构造方法缺少用途及参数 Javadoc。",
+      "intentional": true
+    },
+    {
+      "id": "F003",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 12,
+      "evidence": "* Find a display name.",
+      "explanation": "Javadoc 正文为英文；参数说明只重复标识符，且遗漏返回值和主动抛出异常的说明。",
+      "intentional": true
+    },
+    {
+      "id": "F004",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 23,
+      "evidence": "public String toString() {",
+      "explanation": "公开重写方法只有 @Override，没有 Javadoc。",
+      "intentional": true
+    },
+    {
+      "id": "F005",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 28,
+      "evidence": "public record UserView(String id) {}",
+      "explanation": "record 类型注释缺少作者、创建日期和组件 @param。",
+      "intentional": true
+    },
+    {
+      "id": "F006",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 31,
+      "evidence": "String find(String userId);",
+      "explanation": "接口的隐式 public 方法缺少 Javadoc、参数和返回值说明。",
+      "intentional": true
+    },
+    {
+      "id": "F007",
+      "rule_id": "javadoc",
+      "file": "src/main/java/com/example/fixtures/JavadocViolations.java",
+      "line": 34,
+      "evidence": "public enum Status {",
+      "explanation": "嵌套 enum 缺少类型 Javadoc。",
+      "intentional": true
+    },
+    {
+      "id": "F008",
+      "rule_id": "spring-injection",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 18,
+      "evidence": "public InjectionAndLoggingViolations(Environment environment) {",
+      "explanation": "Spring 服务已用 Lombok @Getter；该构造仅赋值 final 依赖，没有初始化或校验，应提出可简化建议。",
+      "intentional": true
+    },
+    {
+      "id": "F009",
+      "rule_id": "configuration-injection",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 24,
+      "evidence": "return environment.getProperty(\"demo.feature.enabled\", Boolean.class, false);",
+      "explanation": "Spring 管理的服务通过 Environment 读取固定布尔键，应使用 @Value 并保留 false 默认值。",
+      "intentional": true
+    },
+    {
+      "id": "F010",
+      "rule_id": "configuration-injection",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 29,
+      "evidence": "return System.getenv(\"DEMO_DISPLAY_LABEL\");",
+      "explanation": "Spring 组件直接读取固定环境变量，绕开统一属性源注入。",
+      "intentional": true
+    },
+    {
+      "id": "F011",
+      "rule_id": "slf4j-logging",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 14,
+      "evidence": "private static final Logger LOG = LoggerFactory.getLogger(InjectionAndLoggingViolations.class);",
+      "explanation": "已使用 Lombok 的服务手写 LoggerFactory，按规则应使用 @Slf4j。",
+      "intentional": true
+    },
+    {
+      "id": "F012",
+      "rule_id": "slf4j-logging",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 35,
+      "evidence": "System.out.println(\"Task completed\");",
+      "explanation": "普通业务消息直接写标准输出；紧接着还有标准错误输出反例。",
+      "intentional": true
+    },
+    {
+      "id": "F013",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
+      "line": 34,
+      "evidence": "LOG.info(\"Task completed: \" + taskId);",
+      "explanation": "日志消息通过 + 拼接，应使用 SLF4J {} 参数占位符。",
+      "intentional": true
+    },
+    {
+      "id": "F014",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 9,
+      "evidence": "String text = \"Hello \" + name;",
+      "explanation": "使用 + 拼接字符串；本方法还包含 +=、concat、join、StringBuilder 的反例。",
+      "intentional": true
+    },
+    {
+      "id": "F015",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 19,
+      "evidence": "String implicit = String.format(\"%.2f\", value);",
+      "explanation": "调用未指定 Locale 的 String.format。",
+      "intentional": true
+    },
+    {
+      "id": "F016",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 20,
+      "evidence": "String defaultLocale = String.format(Locale.getDefault(), \"%.2f\", value);",
+      "explanation": "使用 Locale.getDefault()，没有固定目标 Locale。",
+      "intentional": true
+    },
+    {
+      "id": "F017",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 21,
+      "evidence": "String nullLocale = String.format((Locale) null, \"%.2f\", value);",
+      "explanation": "显式传入 null Locale，仍不满足非空 Locale 要求。",
+      "intentional": true
+    },
+    {
+      "id": "F018",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 22,
+      "evidence": "String formatted = \"%.2f\".formatted(value);",
+      "explanation": "使用规则禁止的 String.formatted。",
+      "intentional": true
+    },
+    {
+      "id": "F019",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 28,
+      "evidence": "return value.getBytes();",
+      "explanation": "编码未显式指定 UTF-8。",
+      "intentional": true
+    },
+    {
+      "id": "F020",
+      "rule_id": "string-format",
+      "file": "src/main/java/com/example/fixtures/StringAndEncodingViolations.java",
+      "line": 33,
+      "evidence": "return new String(value);",
+      "explanation": "解码未显式指定 UTF-8。",
+      "intentional": true
+    },
+    {
+      "id": "F021",
+      "rule_id": "mapstruct-conversion",
+      "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+      "line": 11,
+      "evidence": "public Target toTarget(Source source) {",
+      "explanation": "该方法紧接着逐字段 new Target，属于实体转换，而非业务新建。",
+      "intentional": true
+    },
+    {
+      "id": "F022",
+      "rule_id": "mapstruct-conversion",
+      "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+      "line": 18,
+      "evidence": "BeanUtils.copyProperties(source, target);",
+      "explanation": "两个不同实体通过反射复制属性，违反 MapStruct 统一映射规则。",
+      "intentional": true
+    },
+    {
+      "id": "F023",
+      "rule_id": "mapstruct-conversion",
+      "file": "src/main/java/com/example/fixtures/MappingViolations.java",
+      "line": 28,
+      "evidence": "public interface NestedMapper {",
+      "explanation": "映射接口嵌在实体转换服务中，且 default 方法隐藏完整手工映射；外层 convert 方法实际调用该接口。",
+      "intentional": true
+    },
+    {
+      "id": "F024",
+      "rule_id": "cyclomatic-complexity",
+      "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
+      "line": 6,
+      "evidence": "public int classify(int value) {",
+      "explanation": "classify 有 21 个 if 与 84 个 &&，CC=106，超过单函数最大值 20。",
+      "intentional": true
+    },
+    {
+      "id": "F025",
+      "rule_id": "cyclomatic-complexity",
+      "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
+      "line": 75,
+      "evidence": "public int adjust(int value) {",
+      "explanation": "本文件两个方法 CC 为 106 和 6，平均 56；全仓 24 个函数总 CC=135，平均 5.625，也超过 5。不能仅凭 adjust 的 CC=6 判定其单函数超限。",
+      "intentional": true
+    },
+    {
+      "id": "F026",
+      "rule_id": "explicit-imports",
+      "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+      "line": 9,
+      "evidence": "import java.util.*;",
+      "explanation": "普通 import 使用通配符。",
+      "intentional": true
+    },
+    {
+      "id": "F027",
+      "rule_id": "explicit-imports",
+      "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+      "line": 10,
+      "evidence": "import static java.util.Collections.*;",
+      "explanation": "静态 import 使用通配符。",
+      "intentional": true
+    },
+    {
+      "id": "F028",
+      "rule_id": "import-order",
+      "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+      "line": 3,
+      "evidence": "import java.util.Map;",
+      "explanation": "java 组排在 org/com.example 组之前，组内 Map 在 List 之前；静态 import 后还出现普通 import。",
+      "intentional": true
+    },
+    {
+      "id": "F029",
+      "rule_id": "import-spacing",
+      "file": "src/main/java/com/example/fixtures/ImportViolations.java",
+      "line": 6,
+      "evidence": "import java.util.Set;",
+      "explanation": "List/Set 同组中间多空行；Set/org 跨组缺空行，普通与静态 import 之间也缺空行。",
+      "intentional": true
+    },
+    {
+      "id": "F030",
+      "rule_id": "line-length",
+      "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+      "line": 8,
+      "evidence": "public String chooseReference(String primaryCustomerReference, String secondaryCustomerReference, String fallbackCustomerReference, boolean preferPrimaryCustomerReference) {",
+      "explanation": "方法声明长度为 177 字符，可在形参边界拆分，不属于字符串或 URL 例外。",
+      "intentional": true
+    },
+    {
+      "id": "F031",
+      "rule_id": "continuation-format",
+      "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+      "line": 16,
+      "evidence": "thirdReference,",
+      "explanation": "summary 的续行缩进逐层加深，而不是相对首行增加 4 空格后对齐。",
+      "intentional": true
+    },
+    {
+      "id": "F032",
+      "rule_id": "continuation-format",
+      "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+      "line": 22,
+      "evidence": "return value.trim().",
+      "explanation": "链式调用点号留在上一行末尾，应与下一行方法名放在一起。",
+      "intentional": true
+    },
+    {
+      "id": "F033",
+      "rule_id": "avoid-excessive-wrapping",
+      "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
+      "line": 28,
+      "evidence": "String normalized =",
+      "explanation": "整句 String normalized = value.trim().toLowerCase(Locale.ROOT); 不超过 120 字符，却逐层拆开。",
+      "intentional": true
+    },
+    {
+      "id": "F034",
+      "rule_id": "javadoc",
+      "file": "src/test/java/com/example/fixtures/StyleViolationsTest.java",
+      "line": 10,
+      "evidence": "public void formatsMessage() {",
+      "explanation": "测试代码的公开方法也缺少 Javadoc，不应按测试代码豁免。",
+      "intentional": true
+    }
+  ]
+}
