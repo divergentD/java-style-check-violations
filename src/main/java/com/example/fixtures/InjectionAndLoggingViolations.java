@@ -2,31 +2,30 @@ package com.example.fixtures;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
 
-/** 提供刻意违反注入与日志规范的虚构服务。 */
+/** 提供已修正配置注入、仍保留日志反例的虚构服务。 */
 @Getter
 @Service
 public class InjectionAndLoggingViolations {
     private static final Logger LOG = LoggerFactory.getLogger(InjectionAndLoggingViolations.class);
-    private final Environment environment;
+    @Value("${demo.feature.enabled:false}")
+    private boolean featureEnabled;
 
-    /** 仅做依赖字段赋值，故意保留可简化的构造方法。 */
-    public InjectionAndLoggingViolations(Environment environment) {
-        this.environment = environment;
-    }
+    @Value("${demo.display.label:#{null}}")
+    private String displayLabel;
 
-    /** 在 Spring 组件中通过通用环境对象读取固定标量配置。 */
+    /** 读取 Spring 注入的功能开关，缺省关闭。 */
     public boolean enabled() {
-        return environment.getProperty("demo.feature.enabled", Boolean.class, false);
+        return featureEnabled;
     }
 
-    /** 在 Spring 组件中直接读取固定环境变量。 */
+    /** 读取 Spring 属性源中的展示名，缺省保持 null。 */
     public String label() {
-        return System.getenv("DEMO_DISPLAY_LABEL");
+        return displayLabel;
     }
 
     /** 用手写 LoggerFactory 和标准输出记录普通业务消息。 */

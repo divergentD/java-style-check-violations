@@ -1,33 +1,42 @@
 {
-  "validation_scope": "8 个 Java 源文件，全部手写函数；仅语法解析和当前语料决策点统计。",
+  "validation_scope": "8 个 Java 源文件；全部手写方法、显式构造与接口 default 实现。",
   "parser": "OpenJDK javac 21.0.12 / JavacTask.parse / TreeScanner",
   "syntax_parse_errors": 0,
-  "compilation": "NOT_RUN",
-  "runtime": "NOT_RUN",
-  "style_result": "EXPECTED_VIOLATIONS_PRESERVED",
-  "covered_rule_count": 13,
-  "minimum_expected_findings": 34,
+  "compilation": "PASSED_LOCAL_JAVAC_21_ALL_8_SOURCES",
+  "runtime": "NOT_RUN_AS_APPLICATION",
+  "junit_test_execution": "NOT_RUN",
+  "style_result": "QODO_TARGETED_FIXES_VERIFIED_OTHER_INTENTIONAL_VIOLATIONS_PRESERVED",
+  "original_rule_inventory_count": 13,
+  "active_rule_count": 6,
+  "minimum_expected_findings": 23,
+  "resolved_original_findings": 12,
+  "qodo_targeted_feedback_count": 11,
+  "qodo_rereview": "NOT_YET_CONFIRMED",
   "complexity": {
     "decision_points_used": [
       "if",
-      "&&"
+      "for",
+      "||"
     ],
-    "function_count": 24,
-    "sum": 135,
-    "average": 5.625,
-    "maximum": 106,
+    "function_count": 23,
+    "sum": 35,
+    "average": 1.5217391304347827,
+    "average_exact": "35/23",
+    "maximum": 7,
     "average_limit": 5,
     "maximum_limit": 20,
+    "average_passed": true,
+    "maximum_passed": true,
     "methods": [
       {
         "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
         "line": 6,
         "method": "classify",
-        "cc": 106
+        "cc": 7
       },
       {
         "file": "src/main/java/com/example/fixtures/ComplexityViolations.java",
-        "line": 75,
+        "line": 20,
         "method": "adjust",
         "cc": 6
       },
@@ -45,49 +54,43 @@
       },
       {
         "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
-        "line": 21,
+        "line": 20,
         "method": "normalize",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/FormattingViolations.java",
-        "line": 27,
+        "line": 25,
         "method": "overWrapped",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/ImportViolations.java",
-        "line": 17,
+        "line": 19,
         "method": "names",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/ImportViolations.java",
-        "line": 25,
+        "line": 27,
         "method": "encode",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
-        "line": 18,
-        "method": "<init>",
-        "cc": 1
-      },
-      {
-        "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
-        "line": 23,
+        "line": 22,
         "method": "enabled",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
-        "line": 28,
+        "line": 27,
         "method": "label",
         "cc": 1
       },
       {
         "file": "src/main/java/com/example/fixtures/InjectionAndLoggingViolations.java",
-        "line": 33,
+        "line": 32,
         "method": "completed",
         "cc": 1
       },
@@ -164,5 +167,41 @@
         "cc": 1
       }
     ]
-  }
+  },
+  "local_regression": {
+    "spring_framework_version": "6.2.11",
+    "lombok_version": "1.18.42",
+    "configuration_cases": {
+      "status": "PASSED",
+      "count": 5,
+      "cases": [
+        "缺省 false 与 null",
+        "多个 Spring 属性源优先级",
+        "显式 false 与空串",
+        "通过 Spring 属性源解析大写环境变量",
+        "非法布尔值在容器装配阶段失败"
+      ]
+    },
+    "classifier_equivalence": {
+      "status": "PASSED",
+      "values": 14003,
+      "range_inclusive": [
+        -2000,
+        12000
+      ],
+      "additional_values": [
+        "Integer.MIN_VALUE",
+        "Integer.MAX_VALUE"
+      ]
+    },
+    "formatting_equivalence": {
+      "status": "PASSED",
+      "cases": 7
+    }
+  },
+  "limitations": [
+    "未提供应用启动或 Maven/Gradle 构建配置。",
+    "仅本地编译和定点回归，不代表完整应用运行或 Qodo 复审通过。",
+    "其余故意保留的风格反例仍应被审查工具报告。"
+  ]
 }
